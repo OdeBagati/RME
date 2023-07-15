@@ -1,6 +1,6 @@
 @extends('layout.auth')
 
-@section('title', 'Register')
+@section('title', 'Lupa Password')
 
 @section('content')
     <div class="card-body">
