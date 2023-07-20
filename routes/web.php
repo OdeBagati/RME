@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PasienController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/pasien', function () {
-    return view('layout.dashboard');
-});
+Route::get('/pasien', [PasienController::class, 'index'])->name('pasien');
+
+// Route::get('/pasien', function () {
+//     return view('dashboard.pasien');
+// });
 
 Route::get('/register', function () {
     return view('auth.register');

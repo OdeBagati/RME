@@ -21,7 +21,7 @@ class PasienFactory extends Factory
         return [
             'pasien_type' => fake()->randomElement(['1', '2', '3']),
             'nama_lengkap' => fake()->name,
-            'nomor_rekam_medis' => fake()->uuid,
+            'nomor_rekam_medis' => "1234567890",
             'nik' => fake()->numerify('###############'),
             'nomor_id_lain' => fake()->numerify('##########'),
             'jenis_kelamin' => fake()->randomElement(['0', '1', '2', '3', '4']),
