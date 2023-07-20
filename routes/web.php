@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/pasien', function () {
+    return view('layout.dashboard');
+});
+
 Route::get('/register', function () {
     return view('auth.register');
 });
