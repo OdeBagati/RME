@@ -63,7 +63,8 @@
     </div>
 
     <div class="container-fluid bg-light" style="border-radius:10px">
-        <h3 class="mb-4 pt-4">DATA PASIEN</h3>
+        <h3 class="mb-3 pt-4">DATA PASIEN</h3>
+        <a href="#" class="btn btn-success mb-4">Tambah Pasien Baru</a>
         <div>
             <table id="example" class="table table-striped table-ressponsive" style="width:100%">
                 <thead>
