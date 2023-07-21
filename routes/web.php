@@ -18,11 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/pasien', [PasienController::class, 'index'])->name('pasien');
-
-// Route::get('/pasien', function () {
-//     return view('dashboard.pasien');
-// });
+Route::resource('pasiens', PasienController::class);
 
 Route::get('/register', function () {
     return view('auth.register');

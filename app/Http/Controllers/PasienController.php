@@ -21,6 +21,11 @@ class PasienController extends Controller
             'countBayi' => $countBayi
         ];
 
-        return view('dashboard.pasien', $data);
+        return view('dashboard.pasien.index', $data);
+    }
+
+    public function create()
+    {
+        return view('dashboard.pasien.create');
     }
 }
