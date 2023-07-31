@@ -5,21 +5,29 @@
 @section('content')
     <div class="card-body">
         <h3 class="text-center mb-3">Login</h3>
-        <form action="#" method="POST">
+        <form action="{{ route('auth.login.post') }}" method="POST">
             @csrf
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Masukkan username atau email">
+                <input value="{{ old('username') }}" type="text" class="form-control @error('username') is-invalid @enderror" name="username" id="floatingInput" placeholder="Masukkan username atau email">
                 <label for="floatingInput">Username atau Email</label>
             </div>
-
+            @error('username')
+                <div class="d-flex justify-content-end mb-3">
+                    <small class="text-danger">{{ $message }}</small>
+                </div>
+            @enderror
             <div class="form-floating mb-3">
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password">
                 <label for="password">Password</label>
             </div>
-
+            @error('password')
+                <div class="d-flex justify-content-end mb-3">
+                    <small class="text-danger">{{ $message }}</small>
+                </div>
+            @enderror
             <div class="row mt-2 mb-3">
                 <div class="col-6">
-                    <a class="text-decoration-none" href="#">Belum punya akun? Daftar</a>
+                    <a class="text-decoration-none" href="{{ route('auth.register.page') }}">Belum punya akun? Daftar</a>
                 </div>
                 <div class="col-6">
                     <a class="text-decoration-none d-flex justify-content-end" href="#">Lupa Password?</a>

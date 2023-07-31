@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,13 +20,16 @@ Route::get('/', function () {
 
 Route::resource('pasiens', PasienController::class);
 
-Route::get('/register', function () {
-    return view('auth.register');
+
+Route::name("auth.")->group(function () {
+    Route::middleware("guest")->group(function () {
+        Route::get('/register', [AuthController::class, "register"])->name("register.page");
+        Route::post("/register", [AuthController::class, "registerSave"])->name("register.post");
+        Route::get('/login', [AuthController::class, "login"])->name("login.page");
+        Route::post("/login", [AuthController::class, "authenticate"])->name("login.post");
+    });
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
 
 Route::get('/forget', function () {
     return view('auth.forget');
