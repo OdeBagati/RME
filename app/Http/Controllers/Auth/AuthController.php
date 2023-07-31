@@ -27,8 +27,9 @@ class AuthController extends Controller
 
     public function authenticate(LoginRequest $request) {
         $creds = $request->validated();
+        // route("user.dashboard")
         if (Auth::attempt($creds)) {
-            return redirect()->intended(route("user.dashboard"));
+            return redirect()->intended("/");
         }
         return back()->withErrors([
             'username' => 'Username atau password salah',
