@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AsesmenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +21,8 @@ Route::get('/', function () {
 });
 
 Route::resource('pasiens', PasienController::class);
+Route::resource('registerPasien', RegisterController::class);
+Route::resource('asesmen', AsesmenController::class);
 
 Route::get('/register', function () {
     return view('auth.register');

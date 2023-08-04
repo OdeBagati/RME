@@ -14,9 +14,9 @@
 
     @yield('content')
 
-    <script src="{{ ('assets/js/jquery.js') }}"></script>
-    <script src="{{ ('assets/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ ('assets/fontawesome/js/all.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/fontawesome/js/all.min.js') }}"></script>
 
     @yield('specific-js')
 </body>
