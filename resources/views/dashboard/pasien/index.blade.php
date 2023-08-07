@@ -22,8 +22,8 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid bg-light mb-3">
-        <div class="container bg-light py-2 mb-2">
+    <div class="container-fluid bg-white mb-3">
+        <div class="container py-2 mb-2">
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -34,7 +34,7 @@
         <div class="row pb-4 text-center">
             <div class="col-lg-4 col-12 p-4">
                 <div class="card w-100">
-                    <div class="card-body">
+                    <div class="card-body bg-light">
                         <i class="fa-solid fa-hospital mb-4"></i>
                         <p><b>Pasien Umum</b></p>
                         <p style="margin-top: -1rem;">{{ $countUmum }} orang</p>
@@ -43,7 +43,7 @@
             </div>
             <div class="col-lg-4 col-12 p-4">
                 <div class="card w-100">
-                    <div class="card-body">
+                    <div class="card-body bg-light">
                         <i class="fa-solid fa-hospital mb-4"></i>
                         <p><b>Pasien Tidak Diketahui</b></p>
                         <p style="margin-top: -1rem;">{{ $countUnknown }} orang</p>
@@ -52,7 +52,7 @@
             </div>
             <div class="col-lg-4 col-12 p-4">
                 <div class="card w-100">
-                    <div class="card-body">
+                    <div class="card-body bg-light">
                         <i class="fa-solid fa-hospital mb-4"></i>
                         <p><b>Pasien Bayi Baru Lahir</b></p>
                         <p style="margin-top: -1rem;">{{ $countBayi }} orang</p>
@@ -62,7 +62,7 @@
         </div>
     </div>
 
-    <div class="container-fluid bg-light" style="border-radius:10px">
+    <div class="container-fluid bg-white" style="border-radius:10px">
         <h3 class="mb-3 pt-4">DATA PASIEN</h3>
         <a href="{{ route('pasiens.create') }}" class="btn btn-success mb-4">Tambah Pasien Baru</a>
         <div>
