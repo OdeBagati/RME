@@ -283,7 +283,7 @@
                 </section>
                 
                 {{-- Pasien Tidak Dikenal --}}
-                <section id="unknown">
+                <section id="unknown" class="d-none">
 
                     <div class="card bg-white mt-4">
                         <div class="card-body mx-3">
@@ -375,7 +375,7 @@
                 </section>
                 
                 {{-- Bayi Baru Lahir --}}
-                <section id="newborn">
+                <section id="newborn" class="d-none">
 
                     <div class="card bg-white mt-4">
                         <div class="card-body mx-3">
@@ -484,6 +484,49 @@
 @endsection
 
 @section('specific-js')
+    <script>
+        $(document).ready(function () {
+            const pasienTypeSelect = $('#pasienType');
 
+            const umumSection = $("#umum");
+            const unknownSection = $("#unknown");
+            const newbornSection = $("#newborn");
+
+            pasienTypeSelect.on("change", function () {
+                const pasienTypeValue = $(this).val();
+                switch(pasienTypeValue) {
+                    case "1":
+                        if(!unknownSection.hasClass("d-none")) {
+                            unknownSection.addClass("d-none");
+                        }
+                        if(!newbornSection.hasClass("d-none")) {
+                            newbornSection.addClass("d-none")
+                        }
+                        umumSection.removeClass("d-none");
+                        break;
+                    case "2":
+                        if(!umumSection.hasClass("d-none")) {
+                            umumSection.addClass("d-none");
+                        }
+                        if(!newbornSection.hasClass("d-none")) {
+                            newbornSection.addClass("d-none")
+                        }
+                        unknownSection.removeClass("d-none");
+                            break;
+                    case "3":
+                        if(!umumSection.hasClass("d-none")) {
+                            umumSection.addClass("d-none");
+                        }
+                        if(!unknownSection.hasClass("d-none")) {
+                            unknownSection.addClass("d-none")
+                        }
+                        newbornSection.removeClass("d-none");
+                        break;
+                }
+            });
+            // console.log(pasienTypeSelect);
+        });
+
+    </script>
 @endsection
 
