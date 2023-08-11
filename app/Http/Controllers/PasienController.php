@@ -4,9 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Pasien;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUmumPasienRequest;
+use App\Http\Requests\StoreUnknownPasienRequest;
+use App\Http\Requests\StoreNewbornPasienRequest;
+use App\Http\Requests\UpdateUmumPasienRequest;
+use App\Http\Requests\UpdateUnknownPasienRequest;
+use App\Http\Requests\UpdateNewbornPasienRequest;
 
 class PasienController extends Controller
 {
+    private function getPasienTypeRequest($type, $isCreate = true) {
+        if ($type == "1") {
+            return $isCreate ? new StoreUmumPasienRequest : new UpdateUmumPasienRequest;
+        } else if ($type == "2") {
+            return $isCreate ? new StoreUnknownPasienRequest : new UpdateUnknownPasienRequest;
+        } else if ($type == "3") {
+            return $isCreate ? new StoreNewbornPasienRequest : new UpdateNewbornPasienRequest;
+        } 
+        return false;
+    }
+
     public function index()
     {
         $pasiens = Pasien::all();
@@ -31,65 +48,34 @@ class PasienController extends Controller
 
     public function store(Request $request)
     {
-        $tipePasien = $request->input('pasien_type');
-        $noRM = $request->input('nomor_rekam_medis');
-        $namaLengkap = $request->input('nama_lengkap');
-        $tempatLahir = $request->input('tempat_lahir');
-        $tanggalLahir = $request->input('tanggal_lahir');
-        $alamat = $request->input('alamatPasien');
-        $provinsi = $request->input('provinsi');
-        $kota = $request->input('kota');
-        $kecamaan = $request->input('kecamatan');
-        $statusPernikahan = $request->input('statusPernikahan');
-        $jenisKelamin = $request->input('jenis_kelamin');
-        $pekerjaan = $request->input('pekerjaan');
-        $pendidikan = $request->input('pendidikan');
-        $namaIbu = $request->input('namaIbu');
-        $telpRumah = $request->input('noTelpRumah');
-        $nik = $request->input('nik');
-        $negara = $request->input('negara');
-        $kodePos = $request->input('kodePos');
-        $alamatDomisili = $request->input('alamatDomisili');
-        $negaraDomisili = $request->input('negaraDomisili');
-        $provinsiDomisili = $request->input('provinsiDomisili');
-        $kotaDomisili = $request->input('kotaDomisili');
-        $kecamaanDomisili = $request->input('kecamatanDomisili');
-        $kodePosDomisili = $request->input('kodePosDomisili');
-        $telpPasien = $request->input('noTelpSelular');
-        $agama = $request->input('agama');
-        $noId = $request->input('noId');
-        $bahasa = $request->input('bahasa');
-        $metodePembayaran = $request->input('metodePembayaran');
-        Pasien::create([
-            'pasien_type' => $tipePasien,
-            'nomor_rekam_medis' => $noRM,
-            'nama_lengkap' => $namaLengkap,
-            'tempat_lahir' => $tempatLahir,
-            'tanggal_lahir' => $tanggalLahir,
-            'alamat' => $alamat,
-            'negara' => $negara,
-            'provinsi' => $provinsi,
-            'kota_kabupaten' => $kota,
-            'kecamatan' => $kecamaan,
-            'kode_pos' => $kodePos,
-            'status_pernikahan' => $statusPernikahan,
-            'jenis_kelamin' => $jenisKelamin,
-            'pekerjaan' => $pekerjaan,
-            'pendidikan' => $pendidikan,
-            'nama_ibu_kandung' => $namaIbu,
-            'nomor_telepon_rumah' => $telpRumah,
-            'nomor_id_lain' => $noId,
-            'bahasa' => $bahasa,
-            'nik' => $nik,
-            'agama' => $agama,
-            'alamat_domisili' => $alamatDomisili,
-            'negara_domisili' => $negaraDomisili,
-            'provinsi_domisili' => $provinsiDomisili,
-            'kota_kabupaten_domisili' => $kotaDomisili,
-            'kecamatan_domisili' => $kecamaanDomisili,
-            'kode_pos_domisili' => $kodePosDomisili,
-            'nomor_hp' => $telpPasien,
-        ]);
+        // get validation rule
+        $type = $request->input("pasien_type");
+        $pasienTypeRequest = $this->getPasienTypeRequest($type);
+        if(!$pasienTypeRequest) {
+            return back()->with("error", "invalid pasien type");
+        }
+        // validating request & create pasien
+        $data = $request->validate($pasienTypeRequest->rules());
+        Pasien::create($data);
+
         return redirect('/registerPasien/create');
+    }
+
+    public function edit(Pasien $pasien) {
+        return view('dashboard.pasien.edit')->with('pasien', $pasien);
+    }
+
+    public function update(Pasien $pasien, Request $request) {
+        $type = $pasien->pasien_type;
+        $pasienTypeRequest = $this->getPasienTypeRequest($type, false);
+        $data = $request->validate($pasienTypeRequest->rules());
+        $pasien->update($data);
+        return redirect()->route('pasiens.index')->with('success', 'berhasil update pasien');
+    }
+
+    public function destroy(Pasien $pasien) {
+        $id = $pasien->id;
+        $pasien->delete();
+        return redirect()->route('pasiens.index')->with("success', 'berhasil menghapus pasien dengan id {$id}");
     }
 }
