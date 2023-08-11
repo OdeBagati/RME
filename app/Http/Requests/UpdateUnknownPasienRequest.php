@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUnknownPasienRequest extends FormRequest
+class UpdateUnknownPasienRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,6 @@ class StoreUnknownPasienRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "pasien_type" => "required|in:1,2,3",
             "nama_lengkap" => "required|max:255",
             "perkiraan_umur" => "required|integer",
             "lokasi_ditemukan" => "required|max:5000",

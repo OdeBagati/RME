@@ -109,6 +109,11 @@
                             </td>
                             <td>
                                 <a href="{{ route('pasiens.edit', $pasien) }}">Edit</a>
+                                <form action="{{ route('pasiens.destroy', $pasien) }}" class="d-inline" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="delete-button">Hapus</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -135,6 +140,12 @@
         $(document).ready(function () {
             $('#example').DataTable({
                 responsive: true
+            });
+            $('.delete-button').on('click', (e) => {
+                const result = confirm("anda yakin menghapus data ?");
+                if(!result) {
+                    e.preventDefault();
+                }
             });
         });
     </script>
