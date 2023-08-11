@@ -107,7 +107,9 @@
                                     <p>Umum</p>
                                 @endif
                             </td>
-                            <td>Aksi</td>
+                            <td>
+                                <a href="{{ route('pasiens.edit', $pasien) }}">Edit</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
