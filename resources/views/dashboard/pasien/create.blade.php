@@ -249,6 +249,8 @@
                                                 <select class="form-select" aria-label="Status Pernikahan" name="status_pernikahan">
                                                     <option value="1">Belum Menikah</option>
                                                     <option value="2">Sudah Menikah</option>
+                                                    <option value="3">Cerai Hidup</option>
+                                                    <option value="4">Cerai Mati</option>
                                                 </select>
                                                 @error('status_pernikahan')
                                                     <div class="invalid-feedback">
@@ -264,6 +266,8 @@
                                                     <option value="0">Tidak Diketahui</option>
                                                     <option value="1">Laki - laki</option>
                                                     <option value="2">Perempuan</option>
+                                                    <option value="3">Tidak Dapat Ditentukan</option>
+                                                    <option value="4">Tidak Mengisi</option>
                                                 </select>
                                                 @error('jenis_kelamin')
                                                     <div class="invalid-feedback">
