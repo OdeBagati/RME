@@ -638,7 +638,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <label for="tempat_lahir" class="form-label">Identitas Penanggung Jawab Pasien</label>
+                                    {{-- <label for="tempat_lahir" class="form-label">Identitas Penanggung Jawab Pasien</label>
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3">
@@ -709,7 +709,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

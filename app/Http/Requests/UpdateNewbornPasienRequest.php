@@ -27,12 +27,12 @@ class UpdateNewbornPasienRequest extends FormRequest
             "nomor_rekam_medis" => "required",
             "tanggal_lahir" => "required|date",
             "jenis_kelamin" => "required|in:0,1,2",
-            "nama_penanggung_jawab" => "required|max:255",
-            "nomor_hp_penanggung_jawab" => "required|numeric",
-            "hubungan_penanggung_jawab_dengan_pasien" => "required|max:255",
-            "nama_pengantar" => "required|max:255",
-            "nomor_hp_pengantar" => "required|numeric",
-            "hubungan_pengantar_dengan_pasien" => "required|max:255",
+            // "nama_penanggung_jawab" => "required|max:255",
+            // "nomor_hp_penanggung_jawab" => "required|numeric",
+            // "hubungan_penanggung_jawab_dengan_pasien" => "required|max:255",
+            // "nama_pengantar" => "required|max:255",
+            // "nomor_hp_pengantar" => "required|numeric",
+            // "hubungan_pengantar_dengan_pasien" => "required|max:255",
         ];
     }
 }
